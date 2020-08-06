@@ -1,8 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const typeDefs = `
-    input user {
+    input signup {
         name: String!
+        email: String!
+        password: String!
+    }
+
+    input signin {
         email: String!
         password: String!
     }
@@ -11,6 +16,7 @@ const typeDefs = `
         id: ID!
         name: String!
         email: String!
+        token: String!
         password: String!
         posts: [Post]
     }
@@ -28,12 +34,18 @@ const typeDefs = `
         likes: Int
     }
 
-    type Query {
-        user: User
+    type Valid {
+        valid: String!
+        token: String!
     }
 
+    type Query {
+        user: User
+        signin(data: signin): Valid!
+    }
+    
     type Mutation {
-        signup(data: user): User!
+        signup(data: signup): User!
     }
 `;
 exports.default = typeDefs;

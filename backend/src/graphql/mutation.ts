@@ -7,10 +7,8 @@ export default {
         const salt = bcrypt.genSaltSync()
         data.password = bcrypt.hashSync(data.password, salt)
 
-        const newUser = new Model({
-            ...data
-        })
+        const newUser = new Model({...data })
         newUser.save()
         return newUser
-    }   
+    },
 }

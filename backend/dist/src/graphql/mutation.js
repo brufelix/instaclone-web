@@ -9,10 +9,8 @@ exports.default = {
     signup(_, { data }) {
         const salt = bcrypt_1.default.genSaltSync();
         data.password = bcrypt_1.default.hashSync(data.password, salt);
-        const newUser = new model_1.default({
-            ...data
-        });
+        const newUser = new model_1.default({ ...data });
         newUser.save();
         return newUser;
-    }
+    },
 };

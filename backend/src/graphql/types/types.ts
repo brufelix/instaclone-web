@@ -3,6 +3,7 @@ type TUser = {
     name: string,
     email: string,
     password: string,
+    token?: string
 }
 
 type TSignup = {
@@ -13,4 +14,11 @@ type TSignup = {
     }
 }
 
-export { TUser, TSignup }
+type TSignin = {
+    data: {
+        email: string, 
+        password: string
+    }
+}
+
+export { TUser, TSignup, TSignin }
