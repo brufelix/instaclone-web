@@ -1,37 +1,15 @@
 import express from "express"
 import { ApolloServer, gql } from "apollo-server-express"
-import db from "./database/db"
+import tD from './graphql/typeDefs'
+import Query from './graphql/query'
+import Mutation from './graphql/mutation'
 
 const typeDefs = gql`
-    type User {
-        id: ID!
-        name: String!
-        email: String!
-        password: String!
-        posts: [Post]
-    }
-
-    type Post {
-        id: String!
-        image: String!
-        comments: [Comment]
-        likes: Int
-    }
-
-    type Comment {
-        id: ID!
-        comment: String!
-        likes: Int
-    }
-
-    type Query {
-        hello: String
-    }
+    ${tD}
 `
 const resolvers = {
-    Query: {
-        hello: () => "Hello"
-    }
+    Query,
+    Mutation
 }
 
 const server = new ApolloServer({ typeDefs, resolvers })

@@ -5,36 +5,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const apollo_server_express_1 = require("apollo-server-express");
+const typeDefs_1 = __importDefault(require("./graphql/typeDefs"));
+const query_1 = __importDefault(require("./graphql/query"));
+const mutation_1 = __importDefault(require("./graphql/mutation"));
 const typeDefs = apollo_server_express_1.gql `
-    type User {
-        id: ID!
-        name: String!
-        email: String!
-        password: String!
-        posts: [Post]
-    }
-
-    type Post {
-        id: String!
-        image: String!
-        comments: [Comment]
-        likes: Int
-    }
-
-    type Comment {
-        id: ID!
-        comment: String!
-        likes: Int
-    }
-
-    type Query {
-        hello: String
-    }
+    ${typeDefs_1.default}
 `;
 const resolvers = {
-    Query: {
-        hello: () => "Hello"
-    }
+    Query: query_1.default,
+    Mutation: mutation_1.default
 };
 const server = new apollo_server_express_1.ApolloServer({ typeDefs, resolvers });
 const app = express_1.default();
