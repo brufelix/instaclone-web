@@ -28,7 +28,7 @@ exports.default = {
             const now = Math.floor(Date.now() / 1000);
             if (valid) {
                 const infoUser = {
-                    name: user.name,
+                    _id: user._id,
                     email: user.email,
                     iat: now,
                     exp: now + (3 * 24 * 60 * 60)

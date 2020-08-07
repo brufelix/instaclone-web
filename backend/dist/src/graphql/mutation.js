@@ -10,7 +10,7 @@ exports.default = {
         const salt = bcrypt_1.default.genSaltSync();
         data.password = bcrypt_1.default.hashSync(data.password, salt);
         const newUser = new model_1.ModelUser({ ...data });
-        newUser.save();
+        newUser.save().catch(() => { throw new Error("Error ao Registrar Usuário."); });
         return newUser;
     },
     async addPost(_, { data, filter }) {

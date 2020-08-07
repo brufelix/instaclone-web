@@ -27,7 +27,6 @@ export default {
             if (valid){ 
                 const infoUser: TToken = {
                     _id: user._id,
-                    name: user.name,
                     email: user.email,
                     iat: now,
                     exp: now + ( 3 * 24 * 60 * 60)
@@ -40,7 +39,7 @@ export default {
             return { valid: false, token: ""}
         }
     },
-    async getComments(_:undefined, { post_id }: { post_id: string }) {
+    async getComments(_:undefined, { post_id }: {post_id: string}) {
         const comments = await ModelComment.find({ post_id }, (err, result) => {
             if (err) throw new Error("Error fetch comments")
             return result
