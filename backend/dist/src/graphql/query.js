@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const model_1 = require("../model/model");
-const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt_simple_1 = __importDefault(require("jwt-simple"));
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const model_1 = require("../model/model");
 const secret_1 = __importDefault(require("../../secret/secret"));
 exports.default = {
     async user(_, { email }) {
@@ -42,5 +42,21 @@ exports.default = {
         else {
             return { valid: false, token: "" };
         }
+    },
+    async getComments(_, { post_id }) {
+        const comments = await model_1.ModelComment.find({ post_id }, (err, result) => {
+            if (err)
+                throw new Error("Error fetch comments");
+            return result;
+        });
+        return comments;
+    },
+    async getPosts(_, { author_id }) {
+        const posts = await model_1.ModelPost.find({ author_id }, (err, res) => {
+            if (err)
+                throw new Error("Error fetch Posts");
+            return res;
+        });
+        return posts;
     }
 };
