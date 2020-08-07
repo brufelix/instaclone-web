@@ -1,4 +1,5 @@
 import { Document } from "mongoose"
+import { TPost } from '../types/types'
 
 interface IUser extends Document {
     _id: string
@@ -6,7 +7,15 @@ interface IUser extends Document {
     email: string
     password: string
     token?: string
-    posts: []
+    posts: TPost[]
 }
 
-export { IUser }
+interface IPost extends Document {
+    author_id: string
+    image: string    
+    caption: string
+    comments: string[]
+    likes: number
+}
+
+export { IUser, IPost }

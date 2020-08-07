@@ -1,22 +1,21 @@
-import { TUser, TSignin, TToken } from './types/types'
-import Model from '../model/model' 
+import { TUser, TDataSignin, TToken } from '../types/types'
+import { ModelUser } from '../model/model' 
 import bcrypt from 'bcrypt'
 import jwt from 'jwt-simple'
 import KEY from '../../secret/secret'
 
 export default {
-    async user(_: undefined, args: TUser ) {
-        const { email } = args
-        const user: TUser | null = await Model.findOne({email}, (err, res) => {
+    async user(_: undefined, { email }: TUser ) {
+        const user: TUser = await ModelUser.findOne({email}, (err, res) => {
             if(err) throw new Error("User Invalid")
             return res
         })
         return user
     },
-    async signin(_: undefined, { data }: TSignin) {
+    async signin(_: undefined, { data }: TDataSignin) {
         const { email, password } = data
 
-        let user: TUser | null = await Model.findOne({ email }, (err, result) => {
+        let user: TUser = await ModelUser.findOne({ email }, (err, result) => {
             if(err) throw new Error("Email/password Invalid")
             return result 
         })

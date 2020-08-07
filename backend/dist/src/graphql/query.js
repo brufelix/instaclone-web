@@ -3,14 +3,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const model_1 = __importDefault(require("../model/model"));
+const model_1 = require("../model/model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jwt_simple_1 = __importDefault(require("jwt-simple"));
 const secret_1 = __importDefault(require("../../secret/secret"));
 exports.default = {
-    async user(_, args) {
-        const { email } = args;
-        const user = await model_1.default.findOne({ email }, (err, res) => {
+    async user(_, { email }) {
+        const user = await model_1.ModelUser.findOne({ email }, (err, res) => {
             if (err)
                 throw new Error("User Invalid");
             return res;
@@ -19,7 +18,7 @@ exports.default = {
     },
     async signin(_, { data }) {
         const { email, password } = data;
-        let user = await model_1.default.findOne({ email }, (err, result) => {
+        let user = await model_1.ModelUser.findOne({ email }, (err, result) => {
             if (err)
                 throw new Error("Email/password Invalid");
             return result;

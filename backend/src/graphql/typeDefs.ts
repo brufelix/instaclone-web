@@ -10,6 +10,15 @@ const typeDefs = `
         password: String!
     }
 
+    input post {
+        image: String!
+        caption: String!
+    }
+
+    input filter {
+        email: String!
+    }
+
     type User {
         id: ID!
         name: String!
@@ -22,6 +31,7 @@ const typeDefs = `
     type Post {
         id: String!
         image: String!
+        caption: String!
         comments: [Comment]
         likes: Int
     }
@@ -38,12 +48,13 @@ const typeDefs = `
     }
 
     type Query {
-        user: User
+        user: User!
         signin(data: signin): Valid!
     }
     
     type Mutation {
         signup(data: signup): User!
+        addPost(data: post! filter: filter!): Post!
     }
 `
 
