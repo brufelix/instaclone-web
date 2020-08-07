@@ -1,6 +1,6 @@
+import bcrypt from "bcrypt"
 import { TDataSignup, TDataPost, TDataComment, TUser } from "../types/types"
 import { ModelUser, ModelPost, ModelComment } from '../model/model'
-import bcrypt from "bcrypt"
 
 export default {
     signup(_: undefined, { data }: TDataSignup ) {
@@ -20,14 +20,14 @@ export default {
         })
 
         if (user) {
-            const newPost = new ModelPost({...data, author_id: user._id, comments: [], likes: 0 })
+            const newPost = new ModelPost({...data, author_id: user._id, likes: 0 })
             newPost.save()
             return newPost
         } else {
             throw new Error("Error add post")
         }
     },
-    async addComment(_: undefined, { data }: TDataComment) {
+    addComment(_: undefined, { data }: TDataComment) {
         const newComment = new ModelComment({ ...data, likes: 0 })
         newComment.save()
 

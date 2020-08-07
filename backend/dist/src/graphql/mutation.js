@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const model_1 = require("../model/model");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const model_1 = require("../model/model");
 exports.default = {
     signup(_, { data }) {
         const salt = bcrypt_1.default.genSaltSync();
@@ -21,7 +21,7 @@ exports.default = {
             return res;
         });
         if (user) {
-            const newPost = new model_1.ModelPost({ ...data, author_id: user._id, comments: [], likes: 0 });
+            const newPost = new model_1.ModelPost({ ...data, author_id: user._id, likes: 0 });
             newPost.save();
             return newPost;
         }
@@ -29,7 +29,7 @@ exports.default = {
             throw new Error("Error add post");
         }
     },
-    async addComment(_, { data }) {
+    addComment(_, { data }) {
         const newComment = new model_1.ModelComment({ ...data, likes: 0 });
         newComment.save();
         return newComment;

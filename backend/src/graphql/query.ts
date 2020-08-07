@@ -1,7 +1,7 @@
-import { TUser, TDataSignin, TToken } from '../types/types'
-import { ModelUser } from '../model/model' 
-import bcrypt from 'bcrypt'
 import jwt from 'jwt-simple'
+import bcrypt from 'bcrypt'
+import { TUser, TToken, TDataSignin } from '../types/types'
+import { ModelUser, ModelComment, ModelPost } from '../model/model' 
 import KEY from '../../secret/secret'
 
 export default {
@@ -26,6 +26,7 @@ export default {
         
             if (valid){ 
                 const infoUser: TToken = {
+                    _id: user._id,
                     name: user.name,
                     email: user.email,
                     iat: now,
@@ -38,5 +39,21 @@ export default {
         } else {
             return { valid: false, token: ""}
         }
+    },
+    async getComments(_:undefined, { post_id }: { post_id: string }) {
+        const comments = await ModelComment.find({ post_id }, (err, result) => {
+            if (err) throw new Error("Error fetch comments")
+            return result
+        })
+
+        return comments
+    },
+    async getPosts(_:undefined, {author_id}: {author_id: string}) {
+        const posts = await ModelPost.find({ author_id }, (err, res) => {
+            if (err) throw new Error("Error fetch Posts")
+            return res
+        })
+
+        return posts
     }
 }

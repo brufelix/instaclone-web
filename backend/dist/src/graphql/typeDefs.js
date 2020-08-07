@@ -33,14 +33,12 @@ const typeDefs = `
         email: String!
         token: String!
         password: String!
-        posts: [Post]
     }
 
     type Post {
         id: String!
         image: String!
         caption: String!
-        comments: [Comment]
         likes: Int
     }
 
@@ -58,6 +56,8 @@ const typeDefs = `
     type Query {
         user: User!
         signin(data: signin): Valid!
+        getComments(post_id: ID!): [Comment!]!
+        getPosts(author_id: ID!): [Post!]!
     }
     
     type Mutation {

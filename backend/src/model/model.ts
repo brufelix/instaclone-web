@@ -5,7 +5,7 @@ const schemaComment = new Schema({
     author: {type: String, required: true },
     comment: {type: String},
     likes: {type: Number},
-    post_id: { type: String }
+    post_id: {type: String}
 })
 
 const schemaPost = new Schema({
