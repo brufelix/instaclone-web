@@ -1,5 +1,5 @@
-import { TDataSignup, TDataPost, TUser } from "../types/types"
-import { ModelUser, ModelPost } from '../model/model'
+import { TDataSignup, TDataPost, TDataComment, TUser } from "../types/types"
+import { ModelUser, ModelPost, ModelComment } from '../model/model'
 import bcrypt from "bcrypt"
 
 export default {
@@ -26,5 +26,11 @@ export default {
         } else {
             throw new Error("Error add post")
         }
-    }
+    },
+    async addComment(_: undefined, { data }: TDataComment) {
+        const newComment = new ModelComment({ ...data, likes: 0 })
+        newComment.save()
+
+        return newComment
+    } 
 }

@@ -6,6 +6,13 @@ type TDataSignup = {
     }
 }
 
+type TDataSignin = {
+    data: {
+        email: string, 
+        password: string
+    }
+}
+
 type TDataPost = {
     data: {
         image: string
@@ -16,10 +23,11 @@ type TDataPost = {
     }
 }
 
-type TDataSignin = {
+type TDataComment = {
     data: {
-        email: string, 
-        password: string
+        author: string
+        comment: string
+        post_id: string
     }
 }
 
@@ -46,4 +54,4 @@ type TToken = {
     exp: number
 }
 
-export { TUser, TToken, TPost, TDataSignup, TDataSignin, TDataPost }
+export { TUser, TToken, TPost, TDataSignup, TDataSignin, TDataPost, TDataComment }

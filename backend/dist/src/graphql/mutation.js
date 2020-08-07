@@ -28,5 +28,10 @@ exports.default = {
         else {
             throw new Error("Error add post");
         }
+    },
+    async addComment(_, { data }) {
+        const newComment = new model_1.ModelComment({ ...data, likes: 0 });
+        newComment.save();
+        return newComment;
     }
 };

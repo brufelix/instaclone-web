@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose'
-import { IUser, IPost } from './interface'
+import { IUser, IPost, IComment } from './interface'
 
 const schemaComment = new Schema({
     author: {type: String, required: true },
@@ -12,7 +12,6 @@ const schemaPost = new Schema({
     author_id: {type:String},
     image: {type: String},
     caption: {type: String},
-    comments: [schemaComment],
     likes: {type: Number}
 })
 
@@ -24,5 +23,6 @@ const schemaUser = new Schema({
 
 const ModelUser = model<IUser>("users", schemaUser)  
 const ModelPost = model<IPost>("posts", schemaPost)
+const ModelComment = model<IComment>("comments", schemaComment)
 
- export { ModelUser, ModelPost }
+export { ModelUser, ModelPost, ModelComment }
