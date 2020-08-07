@@ -14,8 +14,14 @@ interface IPost extends Document {
     author_id: string
     image: string    
     caption: string
-    comments: string[]
     likes: number
 }
 
-export { IUser, IPost }
+interface IComment extends Document {
+    author: string
+    comment: string
+    likes: number
+    post_id: string
+}
+
+export { IUser, IPost, IComment }

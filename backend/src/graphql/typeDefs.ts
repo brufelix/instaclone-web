@@ -19,6 +19,12 @@ const typeDefs = `
         email: String!
     }
 
+    input comment {
+        author: String!
+        comment: String!
+        post_id: String!
+    }
+
     type User {
         id: ID!
         name: String!
@@ -55,6 +61,7 @@ const typeDefs = `
     type Mutation {
         signup(data: signup): User!
         addPost(data: post! filter: filter!): Post!
+        addComment(data: comment!): Comment!
     }
 `
 
