@@ -14,6 +14,13 @@ type TSignup = {
     }
 }
 
+type TToken = {
+    name: string
+    email: string
+    iat: number
+    exp: number
+}
+
 type TSignin = {
     data: {
         email: string, 
@@ -21,4 +28,4 @@ type TSignin = {
     }
 }
 
-export { TUser, TSignup, TSignin }
+export { TUser, TSignup, TSignin, TToken }

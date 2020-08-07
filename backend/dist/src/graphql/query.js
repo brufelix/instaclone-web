@@ -5,9 +5,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const model_1 = __importDefault(require("../model/model"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jwt_simple_1 = __importDefault(require("jwt-simple"));
+const secret_1 = __importDefault(require("../../secret/secret"));
 exports.default = {
-    user(_, args) {
-        return { name: "Bruno" };
+    async user(_, args) {
+        const { email } = args;
+        const user = await model_1.default.findOne({ email }, (err, res) => {
+            if (err)
+                throw new Error("User Invalid");
+            return res;
+        });
+        return user;
     },
     async signin(_, { data }) {
         const { email, password } = data;
@@ -16,9 +24,21 @@ exports.default = {
                 throw new Error("Email/password Invalid");
             return result;
         });
-        const valid = bcrypt_1.default.compareSync(password, user.password);
-        if (valid) {
-            return { valid: true, token: "abc" };
+        if (user) {
+            const valid = bcrypt_1.default.compareSync(password, user.password);
+            const now = Math.floor(Date.now() / 1000);
+            if (valid) {
+                const infoUser = {
+                    name: user.name,
+                    email: user.email,
+                    iat: now,
+                    exp: now + (3 * 24 * 60 * 60)
+                };
+                return { valid: true, token: jwt_simple_1.default.encode(infoUser, secret_1.default) };
+            }
+            else {
+                return { valid: false, token: "" };
+            }
         }
         else {
             return { valid: false, token: "" };
