@@ -1,7 +1,8 @@
 export type TState = {
     email: string 
     password: string
-    notice: string
+    name: string
+    stage: boolean
 }
 
 export type TDataSignin = {
