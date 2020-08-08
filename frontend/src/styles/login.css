@@ -1,15 +1,15 @@
 div.container {
     display: flex;
     flex-direction: column;
-    width: 280px;
-    height: 400px;
+    border: none;
+    width: 340px;
+    height: 418px;
     margin-top: 50px;
-    border-radius: 3px;
     background-color: whitesmoke;
 }
 
 .container-signin {
-    height: 400px;
+    height: 350px;
     border: solid 1px gray;
     background-color: white;
 }
@@ -20,13 +20,8 @@ div.container {
     align-items: center;
     height: 60px;
     border: solid 1px gray;
-    margin-top: 10px;
+    margin-top: 15px;
     background-color: white;
-}
-
-.form.signup {
-    display: flex;
-    border: solid 2px black;
 }
 
 .title {
@@ -63,11 +58,20 @@ div.container {
 
 .button.signin {
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 35px;
 }
 
 .button.signin:active {
     border-color: aqua;
+}
+
+.register-login {
+    font-weight: 1px;
+    font-size: 14px;
+    border: none;
+    outline: none;
+    background-color: white;
+    color:blue;
 }
 
 .ou {
@@ -95,9 +99,4 @@ div.container {
 
 .notice {
     color: red;
-}
-
-a {
-    text-decoration: none;
-    color: blue;
 }
