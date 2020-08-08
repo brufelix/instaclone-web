@@ -1,6 +1,12 @@
-type TState = {
-    email: string
+export type TState = {
+    email: string 
     password: string
+    notice: string
 }
 
-export default TState 
+export type TDataSignin = {
+    signin: {
+        token: string
+        valid: boolean
+    }
+}

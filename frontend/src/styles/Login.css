@@ -52,6 +52,10 @@ div.container {
     font-weight: 1px;
 }
 
+.notice {
+    color: red;
+}
+
 a {
     text-decoration: none;
     color: blue;
