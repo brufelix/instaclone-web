@@ -60,7 +60,6 @@ class Login extends Component<IProps, TState> {
     
     signup() {
         const {email, name, password} = this.state
-
         api.mutate({
             mutation: gql`
                 mutation($name: String! $email: String! $password: String!) {
@@ -88,8 +87,8 @@ class Login extends Component<IProps, TState> {
                         <input className="input" type="password" value={password}
                             placeholder="Senha" onChange={(event) => this.setPassword(event)}/>
                         <button className="button signin" type="button" 
-                        onClick={() => stage ? this.signin() : this.signup()}>
-                            { stage ? "Cadastra-se" : "Entrar" }</button>
+                            onClick={() => stage ? this.signup() : this.signin()}> { stage ? "Cadastra-se" : "Entrar" }
+                        </button>
                     </form>
                     <div className="ou">
                         <div className="liner"></div>
@@ -100,7 +99,8 @@ class Login extends Component<IProps, TState> {
                 <div className="container-signup">
                     <span className="text" >{stage ? "Tem uma conta?" : "Não tem uma conta?"}
                         <button className="register-login" onClick={() => this.setState({stage: !stage})}>  
-                        {stage ? "   Acessar" : "   Cadastra-se"}</button>
+                            {stage ? "   Acessar" : "   Cadastra-se"}
+                        </button>
                     </span>
                 </div>
             </div>
