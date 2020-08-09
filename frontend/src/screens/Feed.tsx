@@ -1,9 +1,11 @@
 import React from 'react'
+import Header from '../components/Header'
+
 
 export default () => {
     return(
         <React.StrictMode>
-            <h1>Feed</h1>
+            <Header />
         </React.StrictMode>
     )
 } 

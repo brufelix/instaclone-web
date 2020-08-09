@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 50px;
+    border-bottom: solid 1px gray;
+    background-color: whitesmoke;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 1px gray;
+    background-color: white;
+}
+
+.input-search {
+    border: none;
+    outline: none;
+}
+
+.icon-search {
+    margin-left: 8px;
+    background-color: white;
+}
+
+.icons {
+    margin: 0 8px 0 8px;
+}
