@@ -11,13 +11,3 @@ export type TDataSignin = {
         valid: boolean
     }
 }
-
-export type TPropsSignup = {
-    name: string
-    email: string
-    password: string
-    setName: (event: React.ChangeEvent<HTMLInputElement>) => void
-    setEmail: (event: React.ChangeEvent<HTMLInputElement>) => void
-    setPassword: (event: React.ChangeEvent<HTMLInputElement>) => void
-    signup: () => void
-}

@@ -1,14 +1,14 @@
 import React from 'react'
 import { Switch, Redirect, Route } from 'react-router-dom'
 
-import Login from '../screens/Login'
+import Authentication from '../screens/Authentication'
 import Feed from '../screens/Feed'
 
 export default () => {
     return(
         <Switch>
-            <Route path="/signin" component={Login}/>
-            <Route path="/signup" component={Login}/>
+            <Route path="/signin" component={Authentication}/>
+            <Route path="/signup" component={Authentication}/>
             <Route path="/feed" component={Feed}/>
             <Redirect from="/" to="/signin" />
         </Switch>
