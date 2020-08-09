@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import gql from 'graphql-tag'
 import api from '../config/graphql'
 import { TState, TDataSignin } from '../types/types'
+import { IProps } from '../types/interfaces'
 import '../styles/login.css'
 
 const initialState: TState = {
     name: "", email: '', password: '', stage: false
 }
 
-class Login extends Component<{}, TState> {
+class Login extends Component<IProps, TState> {
     
-    constructor(props: TState) {
+    constructor(props: IProps) {
         super(props)
         this.state = {...initialState}
         this.setEmail.bind(this)
@@ -47,6 +48,7 @@ class Login extends Component<{}, TState> {
                 if (valid) {
                     localStorage.setItem("token", token)
                     this.setState({...initialState})
+                    this.props.history.push("/Feed")
                 } else {
                     this.setState({...initialState})
                 }
