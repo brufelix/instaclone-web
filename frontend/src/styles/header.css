@@ -1,3 +1,8 @@
+.nav {
+    position: fixed;
+    top: 0px;
+}
+
 .header {
     display: flex;
     flex-direction: row;
@@ -6,7 +11,8 @@
     width: 100vw;
     height: 50px;
     border-bottom: solid 1px gray;
-
+    position: relative;
+    background-color: white;
 }
 
 .search-container {
@@ -14,16 +20,17 @@
     justify-content: center;
     align-items: center;
     border: solid 1px gray;
+    border-radius: 2px;
 }
 
 .input-search {
+    background-color: whitesmoke;
     border: none;
     outline: none;
 }
 
 .icon-search {
-    margin-left: 8px;
-    background-color: white;
+    background-color: whitesmoke;
 }
 
 .icons {
