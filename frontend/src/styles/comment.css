@@ -1,0 +1,22 @@
+.container-comment {
+    border-top: solid 1px gray;
+    background-color: white;
+}
+
+.field {
+    width: 80%;
+    height: 50px;
+    margin-left: 5px;
+    font-size: small;
+    border: none;
+    outline: none;
+} 
+
+.button {
+    width: 80px;
+    color: gray;
+    font-size: small;
+    border: none;
+    outline: none;
+    background-color: white;
+}
