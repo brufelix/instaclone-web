@@ -1,38 +1,18 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import gql from 'graphql-tag'
 import api from '../../config/graphql'
-import { TState, TDataSignin } from '../../types/types'
-import { IProps } from '../../types/interfaces'
-import './Authentication'
+import { TDataSignin } from '../../types/types'
+import './Authentication.css'
 
-const initialState: TState = {
-    name: "", email: '', password: '', stage: false
-}
-
-class Login extends Component<IProps, TState> {
+function Authentication() {
     
-    constructor(props: IProps) {
-        super(props)
-        this.state = {...initialState}
-        this.setEmail.bind(this)
-        this.signin.bind(this)
-        this.signup.bind(this)
-    }
+    const [name, setName] = useState("")
+    const [email, setEmail] = useState("") 
+    const [password, setPassword] = useState("")
+    const [stage, setStage] = useState(false)
 
-    setEmail(event: React.ChangeEvent<HTMLInputElement>) {
-        this.setState({ email: event.target.value })
-    } 
 
-    setPassword(event: React.ChangeEvent<HTMLInputElement>) {
-        this.setState({ password: event.target.value })
-    }
-
-    setName(event: React.ChangeEvent<HTMLInputElement>){
-        this.setState({ name: event.target.value })
-    }
-
-    signin() {
-        const { email, password } = this.state
+    function  signin() {
         if (email.trim() && password.trim()) {
             api.query<TDataSignin>({
                 query: gql`
@@ -47,10 +27,8 @@ class Login extends Component<IProps, TState> {
                 const {token, valid} = res.data.signin
                 if (valid) {
                     localStorage.setItem("token", token)
-                    this.setState({...initialState})
-                    this.props.history.push("/Feed")
                 } else {
-                    this.setState({...initialState})
+                    alert("Invalid Email/Password")
                 }
             })
         } else {
@@ -58,8 +36,7 @@ class Login extends Component<IProps, TState> {
         }
     }
     
-    signup() {
-        const {email, name, password} = this.state
+    function signup() {
         api.mutate({
             mutation: gql`
                 mutation($name: String! $email: String! $password: String!) {
@@ -69,25 +46,23 @@ class Login extends Component<IProps, TState> {
                 }`,
                 variables: {name, email, password}
         }).then(res => {
-            this.setState({...initialState})
+            console.log(res)
         })
     }
 
-    render(){
-        const {name, email, password, stage} = this.state
-        return(
+    return(
             <div className="container">
                 <div className="container-signin">
                     <h1 className="title">Instagram</h1>
                     <form className="form-signin" method="post">
-                        {stage && <input className="input" type="text" onChange={(event) => this.setName(event)} 
+                        {stage && <input className="input" type="text" onChange={(event) => setName(event.target.value)} 
                             placeholder="Nome de usuário" value={name} />}
                         <input className="input" type="text" placeholder="Telefone, nome de usuário ou email" 
-                            onChange={(event) => this.setEmail(event)} value={email} />
+                            onChange={(event) => setEmail(event.target.value)} value={email} />
                         <input className="input" type="password" value={password}
-                            placeholder="Senha" onChange={(event) => this.setPassword(event)}/>
+                            placeholder="Senha" onChange={(event) => setPassword(event.target.value)}/>
                         <button className="button signin" type="button" 
-                            onClick={() => stage ? this.signup() : this.signin()}> { stage ? "Cadastra-se" : "Entrar" }
+                            onClick={() => stage ? signup() : signin()}> { stage ? "Cadastra-se" : "Entrar" }
                         </button>
                     </form>
                     <div className="ou">
@@ -98,14 +73,13 @@ class Login extends Component<IProps, TState> {
                 </div>
                 <div className="container-signup">
                     <span className="text" >{stage ? "Tem uma conta?" : "Não tem uma conta?"}
-                        <button className="register-login" onClick={() => this.setState({stage: !stage})}>  
+                        <button className="register-login" onClick={() => setStage(!stage)}>  
                             {stage ? "   Acessar" : "   Cadastra-se"}
                         </button>
                     </span>
                 </div>
             </div>
         )
-    }
 }
 
-export default Login
+export default Authentication
