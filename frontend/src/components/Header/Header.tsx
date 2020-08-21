@@ -1,7 +1,7 @@
 import React from 'react'
 import { BsFillHouseFill, BsSearch, BsHeart } from 'react-icons/bs'
 import { FaTelegramPlane, FaRegCompass } from 'react-icons/fa'
-import '../styles/header.css'
+import './Header.css'
 
 export default () => {
     return(

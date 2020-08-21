@@ -1,5 +1,5 @@
 import React from 'react'
-import '../styles/comment.css'
+import './Comment.css'
 
 export default () => {
     return(

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import gql from 'graphql-tag'
-import api from '../config/graphql'
-import { TState, TDataSignin } from '../types/types'
-import { IProps } from '../types/interfaces'
-import '../styles/login.css'
+import api from '../../config/graphql'
+import { TState, TDataSignin } from '../../types/types'
+import { IProps } from '../../types/interfaces'
+import './Authentication'
 
 const initialState: TState = {
     name: "", email: '', password: '', stage: false
