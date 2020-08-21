@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
-import Post from '../components/Post'
-import '../styles/feed.css'
+import Header from '../../components/Header/Header'
+import Post from '../../components/Post/Post'
+import './Feed.css'
 
 export default () => {
     return(
