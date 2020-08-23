@@ -1,11 +1,11 @@
 import React from 'react'
-import Header from '../../components/Header/Header'
-import Post from '../../components/Post/Post'
+import Header from '../../components/Header/'
+import Post from '../../components/Post/'
 import './Feed.css'
 
 export default () => {
     return(
-        <React.StrictMode>
+        <>
             <Header />  
             <div className="container-feed">
                 <div className="feed">
@@ -14,6 +14,6 @@ export default () => {
                 </div>
                 <div className="infor"></div>
             </div>
-        </React.StrictMode>
+        </>
     )
 } 

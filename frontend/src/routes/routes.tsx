@@ -1,8 +1,8 @@
 import React from 'react'
 import { Switch, Redirect, Route } from 'react-router-dom'
 
-import Authentication from '../screens/Authentication/Authentication'
-import Feed from '../screens/Feed/Feed'
+import Authentication from '../pages/Authentication/'
+import Feed from '../pages/Feed/'
 
 export default () => {
     return(
