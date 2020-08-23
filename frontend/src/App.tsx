@@ -1,15 +1,25 @@
-import React from 'react'
+import React, { createContext} from 'react'
 import { BrowserRouter } from 'react-router-dom'
-import Route from './template/routes'
+import Route from './routes/routes'
+import { AuthProvider } from './hooks/auth'
 import './App.css'
+
+const token: { token: string } = {
+  token: ""
+}
+
+const tokenContext = createContext(token)
 
 function App() {
   return (
+    <AuthProvider>
       <BrowserRouter>
         <div className="App">
           <Route />
         </div>
       </BrowserRouter>
+    </AuthProvider>
+    
   )
 }
 

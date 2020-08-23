@@ -1,7 +1,7 @@
 import React from 'react'
 import img from '../../img/instaclone.png'
-import Comment from '../Comment/Comment'
-import Icons from '../Icons/Icons'
+import Comment from '../Comment/'
+import Icons from '../Icons/'
 import './Post.css'
 
 export default () => {
