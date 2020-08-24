@@ -1,14 +1,8 @@
-import React, { createContext} from 'react'
+import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Route from './routes/routes'
 import AuthProvider from './hooks'
 import './App.css'
-
-const token: { token: string } = {
-  token: ""
-}
-
-const tokenContext = createContext(token)
 
 function App() {
   return (
@@ -19,7 +13,6 @@ function App() {
         </div>
       </BrowserRouter>
     </AuthProvider>
-    
   )
 }
 

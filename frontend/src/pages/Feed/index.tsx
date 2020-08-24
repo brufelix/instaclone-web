@@ -4,13 +4,13 @@ import Post from '../../components/Post/'
 import './Feed.css'
 
 export default () => {
-    return(
+    return (
         <>
-            <Header />  
+            <Header />
             <div className="container-feed">
                 <div className="feed">
-                    <Post/>
-                    <Post/>
+                    <Post />
+                    <Post />
                 </div>
                 <div className="infor"></div>
             </div>

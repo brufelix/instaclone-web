@@ -3,17 +3,6 @@ import gql from 'graphql-tag'
 
 import api from '../service/graphql'
 
-interface IUser {
-    user: string
-    email: string
-    password: string 
-}
-
-interface IAuthState {
-    token: string
-    user: IUser
-}
-
 interface ISingInCredentials {
     email: string
     password: string
@@ -34,17 +23,22 @@ const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
 
-    const signIn = useCallback(({ email, password }: ISingInCredentials ) => {
+    const signIn = useCallback(({ email, password }: ISingInCredentials) => {
         api.query({
             query: gql`
                 query( $email: String! $password: String! ) {
                     signin(data: { email: $email password: $password }) {
-                        token
+                        valid token
                     }
                 }`,
-            variables: {email, password}
+            variables: { email, password }
         }).then(response => {
-            console.log(response)
+            const { token, valid } = response.data.signin
+            if (valid) {
+                localStorage.setItem("@instaclone-token", token)
+            } else {
+                throw new Error("Error in sign in")
+            }
         })
     }, [])
 

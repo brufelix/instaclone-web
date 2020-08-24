@@ -1,3 +1,3 @@
 import { RouteComponentProps } from 'react-router-dom'
 
-export interface IProps extends RouteComponentProps {}
+export interface IProps extends RouteComponentProps { }
