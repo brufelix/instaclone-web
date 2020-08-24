@@ -1,5 +1,5 @@
 export type TState = {
-    email: string 
+    email: string
     password: string
     name: string
     stage: boolean
