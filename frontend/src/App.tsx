@@ -1,7 +1,7 @@
 import React, { createContext} from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import Route from './routes/routes'
-import { AuthProvider } from './hooks/auth'
+import AuthProvider from './hooks'
 import './App.css'
 
 const token: { token: string } = {
