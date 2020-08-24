@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 
 import { useAuth } from '../../hooks/auth'
 
@@ -10,12 +10,12 @@ function Authentication() {
     const [email, setEmail] = useState("") 
     const [password, setPassword] = useState("")
     const [stage, setStage] = useState(false)
+    const { signIn, signUp } = useAuth()
 
-    function handleSignIn() {
-        const { signIn } = useAuth()
+    const handleSignIn = useCallback(() => {
 
         signIn({ email, password })
-    }
+    }, [])
 
     return(
         <div className="container">
