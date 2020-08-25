@@ -12,8 +12,13 @@ function SignUp(): JSX.Element {
 
     function onSubmit(data: any) {
         const { name, email, password } = data
-        signUp({ name, email, password })
-        history.push("/feed")
+
+        try {
+            signUp({ name, email, password })
+            history.push('/feed')
+        } catch (error) {
+            throw new Error("Error on Sign up")
+        }
     }
 
     return (
