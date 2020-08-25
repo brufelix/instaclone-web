@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
@@ -11,11 +11,17 @@ function SignIn(): JSX.Element {
     const { register, handleSubmit, errors } = useForm()
     const { signIn } = useAuth()
 
-    function onSubmit(data: any) {
-        const { email, password } = data
-        signIn({ email, password })
-        history.push("/feed")
-    }
+    const onSubmit = useCallback(
+        (data: any) => {
+            const { email, password } = data
+            try {
+                signIn({ email, password })
+
+                history.push('/feed')
+            } catch (err) {
+                throw new Error("Error on sign in")
+            }
+        }, [signIn, history])
 
     return (
         <div className="container">

@@ -1,6 +1,5 @@
 import React, { useCallback, createContext, useContext } from 'react'
 import gql from 'graphql-tag'
-
 import api from '../service/graphql'
 
 interface ISingInCredentials {
@@ -15,8 +14,8 @@ interface ISingUpCredentials {
 }
 
 interface IAuthContextData {
-    signIn(credentials: ISingInCredentials): void
-    signUp(singUpCredentials: ISingUpCredentials): void
+    signIn(signInCredentials: ISingInCredentials): void
+    signUp(signUpCredentials: ISingUpCredentials): void
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
@@ -34,7 +33,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         }).then(response => {
             const { token, valid } = response.data.signin
             if (valid) {
-                localStorage.setItem("@instaclone-token", token)
+                localStorage.setItem("@instaclone:token", token)
             } else {
                 throw new Error("Error in sign in")
             }
@@ -53,16 +52,14 @@ export const AuthProvider: React.FC = ({ children }) => {
                 email, name, password
             }
         }).then(response => {
-            console.log(response.data.signup)
             let { token } = response.data.signup
             if (token.trim()) {
-                localStorage.setItem("@instaclone-token", token)
+                localStorage.setItem("@instaclone:token", token)
             } else {
                 throw new Error("Error in sign up")
             }
         })
     }, [])
-
 
     return (
         <AuthContext.Provider value={{ signIn, signUp }} >
