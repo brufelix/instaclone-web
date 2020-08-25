@@ -22,7 +22,6 @@ interface IAuthContextData {
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
-
     const signIn = useCallback(({ email, password }: ISingInCredentials) => {
         api.query({
             query: gql`
@@ -45,7 +44,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     const signUp = useCallback(({ email, name, password }: ISingUpCredentials) => {
         api.mutate({
             mutation: gql`
-                mutation( $name: String $email: String! $password: String! ) {
+                mutation( $name: String! $email: String! $password: String! ) {
                     signup(data: { name: $name email: $email password: $password }) {
                         token
                     }
@@ -54,7 +53,13 @@ export const AuthProvider: React.FC = ({ children }) => {
                 email, name, password
             }
         }).then(response => {
-            console.log(response)
+            console.log(response.data.signup)
+            let { token } = response.data.signup
+            if (token.trim()) {
+                localStorage.setItem("@instaclone-token", token)
+            } else {
+                throw new Error("Error in sign up")
+            }
         })
     }, [])
 

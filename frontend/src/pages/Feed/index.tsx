@@ -3,7 +3,7 @@ import Header from '../../components/Header/'
 import Post from '../../components/Post/'
 import './Feed.css'
 
-export default () => {
+function Feed (): JSX.Element {
     return (
         <>
             <Header />
@@ -17,3 +17,5 @@ export default () => {
         </>
     )
 } 
+
+export default Feed
