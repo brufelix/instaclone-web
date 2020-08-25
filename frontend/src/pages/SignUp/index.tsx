@@ -3,17 +3,16 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth'
-import './Authentication.css'
 
-function SignIn(): JSX.Element {
+function SignUp(): JSX.Element {
 
     let history = useHistory()
     const { register, handleSubmit, errors } = useForm()
-    const { signIn } = useAuth()
+    const { signUp } = useAuth()
 
     function onSubmit(data: any) {
-        const { email, password } = data
-        signIn({ email, password })
+        const { name, email, password } = data
+        signUp({ name, email, password })
         history.push("/feed")
     }
 
@@ -22,6 +21,16 @@ function SignIn(): JSX.Element {
             <h1 className="title">Instagram</h1>
             <div className="login-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <input
+                        placeholder="Nome de usuário"
+                        type="name"
+                        id="inputNameuser"
+                        name="name"
+                        ref={register({
+                            required: "Enter your Nameuser",
+                        })}
+                    />
+                    {errors.nameuser && <p className="error">{errors.nameuser.message}</p>}
                     <input
                         placeholder="Telefone, nome de usuário ou e-mail..."
                         type="email"
@@ -50,7 +59,7 @@ function SignIn(): JSX.Element {
                         })}
                     />
                     {errors.password && <p className="error">{errors.password.message}</p>}
-                    <button type="submit" >Login</button>
+                    <button type="submit" >Sign up</button>
                 </form>
             </div>
             <div className="ou">
@@ -59,13 +68,13 @@ function SignIn(): JSX.Element {
                 <div className="liner"></div>
             </div>
             <div className="container-signup">
-                <span className="text" >Não tem uma conta?
-                    <a href="/signup">
-                        Cadastra-se
+                <span className="text" >Tem uma conta?
+                    <a href="/signin">
+                        Acessar
                     </a>
                 </span>
             </div>
         </div>)
 }
 
-export default SignIn
+export default SignUp

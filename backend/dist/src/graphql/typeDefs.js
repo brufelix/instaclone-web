@@ -49,7 +49,7 @@ const typeDefs = `
     }
 
     type Valid {
-        valid: String!
+        valid: Boolean!
         token: String!
     }
 
@@ -61,7 +61,7 @@ const typeDefs = `
     }
     
     type Mutation {
-        signup(data: signup): User!
+        signup(data: signup): Valid!
         addPost(data: post! filter: filter!): Post!
         addComment(data: comment!): Comment!
     }

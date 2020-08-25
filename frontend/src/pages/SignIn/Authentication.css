@@ -3,8 +3,9 @@
     flex-direction: column;
 
     height: 60%;
-    min-height: 220px;
     width: 25%;
+    min-height: 380px;
+    min-width: 300px;
     margin-top: 5%;
     
     border: solid 1px gray;

@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
 const apollo_server_express_1 = require("apollo-server-express");
 const typeDefs_1 = __importDefault(require("./graphql/typeDefs"));
 const query_1 = __importDefault(require("./graphql/query"));
@@ -17,6 +18,7 @@ const resolvers = {
 };
 const server = new apollo_server_express_1.ApolloServer({ typeDefs, resolvers });
 const app = express_1.default();
+app.use(cors_1.default({ origin: "*" }));
 server.applyMiddleware({ app });
 app.listen({ port: 8000 }, () => console.log(`🚀 Server ready at http://localhost:8000${server.graphqlPath}`));
 exports.default = app;
