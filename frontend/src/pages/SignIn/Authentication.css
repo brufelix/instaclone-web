@@ -42,7 +42,7 @@
     background-color: rgb(0, 0, 299);
 }
 
-.container > .login-form > form > p {
+p.error {
     margin: 0 0 10px 0;
     color: red;
 }

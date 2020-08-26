@@ -14,15 +14,15 @@ interface ISingUpCredentials {
 }
 
 interface IAuthContextData {
-    signIn(signInCredentials: ISingInCredentials): void
-    signUp(signUpCredentials: ISingUpCredentials): void
+    signIn(signInCredentials: ISingInCredentials): Promise<boolean>
+    signUp(signUpCredentials: ISingUpCredentials): Promise<boolean>
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
 
 export const AuthProvider: React.FC = ({ children }) => {
-    const signIn = useCallback(({ email, password }: ISingInCredentials) => {
-        api.query({
+    const signIn = useCallback(async ({ email, password }: ISingInCredentials) => {
+        return await api.query({
             query: gql`
                 query( $email: String! $password: String! ) {
                     signin(data: { email: $email password: $password }) {
@@ -32,16 +32,13 @@ export const AuthProvider: React.FC = ({ children }) => {
             variables: { email, password }
         }).then(response => {
             const { token, valid } = response.data.signin
-            if (valid) {
-                localStorage.setItem("@instaclone:token", token)
-            } else {
-                throw new Error("Error in sign in")
-            }
+            if (token.trim()) localStorage.setItem("@instaclone:token", token);
+            return valid
         })
     }, [])
 
-    const signUp = useCallback(({ email, name, password }: ISingUpCredentials) => {
-        api.mutate({
+    const signUp = useCallback(async ({ email, name, password }: ISingUpCredentials) => {
+        return await api.mutate({
             mutation: gql`
                 mutation( $name: String! $email: String! $password: String! ) {
                     signup(data: { name: $name email: $email password: $password }) {
@@ -55,9 +52,9 @@ export const AuthProvider: React.FC = ({ children }) => {
             let { token } = response.data.signup
             if (token.trim()) {
                 localStorage.setItem("@instaclone:token", token)
-            } else {
-                throw new Error("Error in sign up")
+                return true
             }
+            return false
         })
     }, [])
 

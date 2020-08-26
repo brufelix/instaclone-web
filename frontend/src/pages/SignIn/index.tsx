@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
@@ -8,6 +8,7 @@ import './Authentication.css'
 function SignIn(): JSX.Element {
 
     let history = useHistory()
+    const [err, setError] = useState<String>("")
     const { register, handleSubmit, errors } = useForm()
     const { signIn } = useAuth()
 
@@ -16,8 +17,13 @@ function SignIn(): JSX.Element {
             const { email, password } = data
             try {
                 signIn({ email, password })
-
-                history.push('/feed')
+                    .then((valid: boolean) => {
+                        if (valid) {
+                            history.push('/feed')
+                        } else {
+                            setError("Authentication error :(")
+                        }
+                    })
             } catch (err) {
                 throw new Error("Error on sign in")
             }
@@ -26,6 +32,7 @@ function SignIn(): JSX.Element {
     return (
         <div className="container">
             <h1 className="title">Instagram</h1>
+            {err.trim() && <p className="error">{err}</p>}
             <div className="login-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input

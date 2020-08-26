@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 
@@ -7,6 +7,7 @@ import { useAuth } from '../../hooks/auth'
 function SignUp(): JSX.Element {
 
     let history = useHistory()
+    const [err, setError] = useState<String>("")
     const { register, handleSubmit, errors } = useForm()
     const { signUp } = useAuth()
 
@@ -15,7 +16,13 @@ function SignUp(): JSX.Element {
 
         try {
             signUp({ name, email, password })
-            history.push('/feed')
+                .then((valid: boolean) => {
+                    if (valid) {
+                        history.push('/feed')
+                    } else {
+                        setError("Error in registering user :(")
+                    }
+                })
         } catch (error) {
             throw new Error("Error on Sign up")
         }
@@ -24,6 +31,7 @@ function SignUp(): JSX.Element {
     return (
         <div className="container">
             <h1 className="title">Instagram</h1>
+            {err.trim() && <p className="error">{err}</p>}
             <div className="login-form">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input
