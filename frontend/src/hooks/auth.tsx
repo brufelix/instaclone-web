@@ -16,6 +16,7 @@ interface ISingUpCredentials {
 interface IAuthContextData {
     signIn(signInCredentials: ISingInCredentials): Promise<boolean>
     signUp(signUpCredentials: ISingUpCredentials): Promise<boolean>
+    signOut(): void
 }
 
 const AuthContext = createContext<IAuthContextData>({} as IAuthContextData)
@@ -58,8 +59,12 @@ export const AuthProvider: React.FC = ({ children }) => {
         })
     }, [])
 
+    const signOut = useCallback(() => {
+        localStorage.removeItem("@instaclone:token")
+    }, [])
+
     return (
-        <AuthContext.Provider value={{ signIn, signUp }} >
+        <AuthContext.Provider value={{ signIn, signUp, signOut }} >
             {children}
         </AuthContext.Provider>
     )
