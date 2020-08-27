@@ -1,0 +1,56 @@
+.container-header-profile {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin-top: 5%;
+}
+
+.img-container > img {
+    width: 150px;
+    height: 150px;
+    margin-right: 5vw;
+    border: solid 1px gray;
+    border-radius: 100px;
+}
+
+.container-section {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 35vw;
+}
+
+.container-section > .row01 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    height: 50px;
+}
+
+.container-section > .row01 > h1 {
+    margin-right: 10px;
+}
+
+.container-section > .row01 > button {
+    height: 20px;
+    margin: 5px;
+}
+
+.container-section > .row02 > ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    list-style: none;
+}
+
+.container-section > .row02 > ul > li {
+    font-size: 1rem;
+    margin-right: 20px;
+}
+
+.container-section > .bio > p {
+    text-align:start;
+    height: auto;
+    max-height: 30px;
+    width: 80%;
+}
