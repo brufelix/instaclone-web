@@ -19,7 +19,7 @@ function SignIn(): JSX.Element {
                 signIn({ email, password })
                     .then((valid: boolean) => {
                         if (valid) {
-                            history.push('/feed')
+                            history.push('/home/feed')
                         } else {
                             setError("Authentication error :(")
                         }

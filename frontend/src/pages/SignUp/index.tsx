@@ -18,7 +18,7 @@ function SignUp(): JSX.Element {
             signUp({ name, email, password })
                 .then((valid: boolean) => {
                     if (valid) {
-                        history.push('/feed')
+                        history.push('/home/feed')
                     } else {
                         setError("Error in registering user :(")
                     }

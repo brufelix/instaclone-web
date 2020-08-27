@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import Header from '../../components/Header/'
 import Post from '../../components/Post/'
 import './Feed.css'
 
@@ -16,9 +15,9 @@ function Feed (): JSX.Element {
 
     return (
         <>
-            <Header />
             <div className="container-feed">
                 <div className="feed">
+                    <Post />
                     <Post />
                     <Post />
                 </div>

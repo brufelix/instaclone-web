@@ -1,9 +1,9 @@
 import React from 'react'
 import { BsFillHouseFill, BsSearch, BsHeart } from 'react-icons/bs'
-import { FaTelegramPlane, FaRegCompass } from 'react-icons/fa'
+import { FaTelegramPlane, FaRegCompass, FaUserCircle } from 'react-icons/fa'
 import './Header.css'
 
-export default () => {
+function Header() {
     return (
         <nav className="nav">
             <div className="header">
@@ -13,12 +13,25 @@ export default () => {
                     <input className="input-search" type="text" placeholder={`         Pesquisar`} />
                 </div>
                 <div className="icons-container">
-                    <BsFillHouseFill className="icons" size="28px" />
-                    <FaTelegramPlane className="icons" size="28px" />
-                    <FaRegCompass className="icons" size="28px" />
-                    <BsHeart className="icons" size="28px" />
+                    <a href="/home/feed">
+                        <BsFillHouseFill className="icons" size="23px" />
+                    </a>
+                    <a href="/inbox">
+                        <FaTelegramPlane className="icons" size="23px" />
+                    </a>
+                    <a href="/location">
+                        <FaRegCompass className="icons" size="23px" />
+                    </a>
+                    <a href="/notifications">
+                        <BsHeart className="icons" size="23px" />
+                    </a>
+                    <a href="/home/profile">
+                        <FaUserCircle className="icons" size="23px" />
+                    </a>
                 </div>
             </div>
         </nav>
     )
 }
+
+export default Header
