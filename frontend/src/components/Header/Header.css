@@ -12,10 +12,11 @@ a {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    position: relative;
+    padding-left: 8%;
     width: 100vw;
     height: 50px;
     border-bottom: solid 1px gray;
-    position: relative;
     background-color: white;
 }
 
@@ -31,6 +32,10 @@ a {
     background-color: whitesmoke;
     border: none;
     outline: none;
+}
+
+.icons-container {
+    margin-right: 16%;
 }
 
 .icon-search {
