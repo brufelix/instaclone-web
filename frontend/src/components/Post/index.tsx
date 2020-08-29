@@ -7,7 +7,7 @@ import './Post.css'
 export default () => {
     return(
         <div className="post" >
-            <img src={img} alt="Instaclone"/>
+            <img src={img} alt=""/>
             <Icons/>
             <Comment/>
         </div>
