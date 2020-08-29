@@ -31,7 +31,7 @@ export default {
                     iat: now,
                     exp: now + (3 * 24 * 60 * 60)
                 }
-                return { valid: true, token: jwt.encode(infoUser, KEY) }
+                return { valid: true, token: jwt.encode(infoUser, KEY), user }
             } else {
                 return { valid: false, token: "" }
             }

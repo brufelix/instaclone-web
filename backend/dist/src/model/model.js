@@ -18,6 +18,9 @@ const schemaUser = new mongoose_1.Schema({
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
+    bio: { type: String, default: "" },
+    followers: { type: Number, default: 0 },
+    following: { type: Number, default: 0 }
 });
 const ModelUser = mongoose_1.model("users", schemaUser);
 exports.ModelUser = ModelUser;

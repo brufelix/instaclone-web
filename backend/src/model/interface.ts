@@ -8,6 +8,9 @@ interface IUser extends Document {
     password: string
     token?: string
     posts: TPost[]
+    bio: string,
+    followers: number,
+    following: number 
 }
 
 interface IPost extends Document {
