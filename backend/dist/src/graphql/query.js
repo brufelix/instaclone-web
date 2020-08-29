@@ -8,8 +8,8 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const model_1 = require("../model/model");
 const secret_1 = __importDefault(require("../../secret/secret"));
 exports.default = {
-    async user(_, { email }) {
-        const user = await model_1.ModelUser.findOne({ email }, (err, res) => {
+    async user(_, { _id }) {
+        const user = await model_1.ModelUser.findOne({ _id }, (err, res) => {
             if (err)
                 throw new Error("User Invalid");
             return res;

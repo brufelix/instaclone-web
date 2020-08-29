@@ -5,8 +5,8 @@ import { ModelUser, ModelComment, ModelPost } from '../model/model'
 import KEY from '../../secret/secret'
 
 export default {
-    async user(_: undefined, { email }: TUser) {
-        const user: TUser = await ModelUser.findOne({ email }, (err, res) => {
+    async user(_: undefined, { _id }: TUser) {
+        const user: TUser = await ModelUser.findOne({ _id }, (err, res) => {
             if (err) throw new Error("User Invalid")
             return res
         })

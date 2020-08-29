@@ -28,7 +28,7 @@ export const AuthProvider: React.FC = ({ children }) => {
                 query( $email: String! $password: String! ) {
                     signin(data: { email: $email password: $password }) {
                         valid token user {
-                            name
+                            _id name bio followers following
                         }
                     }
                 }`,
