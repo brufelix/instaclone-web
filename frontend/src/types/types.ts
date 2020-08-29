@@ -1,8 +1,9 @@
-export type TState = {
-    email: string
-    password: string
-    name: string
-    stage: boolean
+export type TUser = {
+    _id: string,
+    name: string,
+    bio: String,
+    followers: Number,
+    following: Number,
 }
 
 export type TDataSignin = {

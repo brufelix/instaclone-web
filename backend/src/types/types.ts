@@ -39,7 +39,6 @@ type TUser = {
     bio: String,
     followers: Number,
     following: Number,
-    token?: string
 }
 
 type TPost = {

@@ -28,14 +28,13 @@ const typeDefs = `
     }
 
     type User {
-        id: ID!
+        _id: ID!
         name: String!
         email: String!
         password: String!
         bio: String,
         followers: Int,
         following: Int,
-        token: String!
     }
 
     type Post {
@@ -58,7 +57,7 @@ const typeDefs = `
     }
 
     type Query {
-        user: User!
+        user(_id: ID!): User!
         signin(data: signin): Valid!
         getComments(post_id: ID!): [Comment!]!
         getPosts(author_id: ID!): [Post!]!
