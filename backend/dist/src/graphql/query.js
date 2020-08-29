@@ -33,7 +33,7 @@ exports.default = {
                     iat: now,
                     exp: now + (3 * 24 * 60 * 60)
                 };
-                return { valid: true, token: jwt_simple_1.default.encode(infoUser, secret_1.default) };
+                return { valid: true, token: jwt_simple_1.default.encode(infoUser, secret_1.default), user };
             }
             else {
                 return { valid: false, token: "" };

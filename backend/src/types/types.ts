@@ -8,7 +8,7 @@ type TDataSignup = {
 
 type TDataSignin = {
     data: {
-        email: string, 
+        email: string,
         password: string
     }
 }
@@ -36,6 +36,9 @@ type TUser = {
     name: string,
     email: string,
     password: string,
+    bio: String,
+    followers: Number,
+    following: Number,
     token?: string
 }
 
