@@ -27,13 +27,18 @@ export const AuthProvider: React.FC = ({ children }) => {
             query: gql`
                 query( $email: String! $password: String! ) {
                     signin(data: { email: $email password: $password }) {
-                        valid token
+                        valid token user {
+                            name
+                        }
                     }
                 }`,
             variables: { email, password }
         }).then(response => {
-            const { token, valid } = response.data.signin
-            if (token.trim()) localStorage.setItem("@instaclone:token", token);
+            const { token, valid, user } = response.data.signin
+            if (token.trim()) {
+                localStorage.setItem("@instaclone:token", token);
+                localStorage.setItem("@instaclone:user", JSON.stringify(user));
+            }
             return valid
         })
     }, [])
@@ -43,16 +48,19 @@ export const AuthProvider: React.FC = ({ children }) => {
             mutation: gql`
                 mutation( $name: String! $email: String! $password: String! ) {
                     signup(data: { name: $name email: $email password: $password }) {
-                        token
+                        token user {
+                            name
+                        }
                     }
                 }`,
             variables: {
                 email, name, password
             }
         }).then(response => {
-            let { token } = response.data.signup
+            let { token, user } = response.data.signup
             if (token.trim()) {
                 localStorage.setItem("@instaclone:token", token)
+                localStorage.setItem("@instaclone:user", JSON.stringify(user));
                 return true
             }
             return false
@@ -61,6 +69,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     const signOut = useCallback(() => {
         localStorage.removeItem("@instaclone:token")
+        localStorage.removeItem("@instaclone:user")
     }, [])
 
     return (

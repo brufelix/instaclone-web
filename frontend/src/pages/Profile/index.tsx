@@ -10,8 +10,7 @@ function Profile(): JSX.Element {
     const { signOut } = useAuth()
     let history = useHistory()
 
-    const handleSignOut = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        event.preventDefault()
+    function handleSignOut() {
         signOut()
         history.push("/signin")
     }
@@ -21,13 +20,13 @@ function Profile(): JSX.Element {
             <div className="container-profile">
                 <header className="container-header-profile">
                     <div className="img-container">
-                        <img src={img} alt="image profile" />
+                        <img src={img} alt="" />
                     </div>
                     <section className="container-section">
                         <div className="row01">
                             <h1>Name user</h1>
                             <button>Edit profile</button>
-                            <button onClick={handleSignOut}>Sign out</button>
+                            <button onClick={() => handleSignOut()}>Sign out</button>
                         </div>
                         <div className="row02">
                             <ul>
