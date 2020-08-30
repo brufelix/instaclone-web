@@ -59,6 +59,7 @@ const typeDefs = `
         signin(data: signin): Valid!
         getComments(post_id: ID!): [Comment!]!
         getPosts(author_id: ID!): [Post!]!
+        getPostageQuantity(author_id: ID!): Int!
     }
     
     type Mutation {
