@@ -33,7 +33,7 @@ function Profile(): JSX.Element {
                 query: gql`
                     query( $_id: ID! ) {
                         user( _id: $_id ) {
-                                _id name bio followers following
+                                _id name bio postageQuantity followers following
                             }
                         }`,
                 variables: { _id }
@@ -59,7 +59,7 @@ function Profile(): JSX.Element {
                         </div>
                         <div className="row02">
                             <ul>
-                                <li><strong>8</strong> Publicações</li>
+                                <li><strong>{user.postageQuantity}</strong> Publicações</li>
                                 <li><strong>{user.followers}</strong> Seguidores </li>
                                 <li><strong>{user.following}</strong> Seguindo</li>
                             </ul>
