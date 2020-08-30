@@ -36,9 +36,10 @@ type TUser = {
     name: string,
     email: string,
     password: string,
-    bio: String,
-    followers: Number,
-    following: Number,
+    bio: string,
+    postageQuantity: number,
+    followers: number,
+    following: number,
 }
 
 type TPost = {

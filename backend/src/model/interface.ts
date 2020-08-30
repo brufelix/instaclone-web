@@ -9,6 +9,7 @@ interface IUser extends Document {
     token?: string
     posts: TPost[]
     bio: string,
+    postageQuantity: number,
     followers: number,
     following: number 
 }
