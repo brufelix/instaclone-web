@@ -31,6 +31,7 @@ const typeDefs = `
         email: String!
         password: String!
         bio: String,
+        postageQuantity: Int,
         followers: Int,
         following: Int,
     }
@@ -59,7 +60,6 @@ const typeDefs = `
         signin(data: signin): Valid!
         getComments(post_id: ID!): [Comment!]!
         getPosts(author_id: ID!): [Post!]!
-        getPostageQuantity(author_id: ID!): Int!
     }
     
     type Mutation {

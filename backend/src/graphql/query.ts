@@ -54,16 +54,5 @@ export default {
         })
 
         return posts
-    },
-    async getPostageQuantity(_: undefined, { author_id }: { author_id: string }) {
-        let int = 0;
-
-        await ModelPost.find({ author_id }, (err, posts) => {
-            if (err) throw new Error("Error fetch posts quantity!")
-            int = posts.length
-        }).catch((err) => {
-            throw new Error("Error fetch posts quantity!")
-        })
-        return int
     }
 }
